@@ -123,7 +123,7 @@ def delta_W(
     tau_p=2.5,
     tau_d=5.0,
     amp_p=0.08,
-    amp_d=-0.053,
+    amp_d=-0.0533,
     rho=0.0015,
     T=20_000_000,
     init_W=None,
@@ -146,7 +146,7 @@ def delta_W_sparse(
     tau_p=2.5,
     tau_d=5.0,
     amp_p=0.08,
-    amp_d=-0.05333,
+    amp_d=-0.0533,
     rho=0.0015,
     T=20_000_000,
     init_W=None,
@@ -169,7 +169,7 @@ def delta_W_sparse(
 
 
 def delta_W_th(
-    N, w_max, tau_syn=1.0, tau_p=2.5, tau_d=5.0, amp_p=0.08, amp_d=-0.053, rho=0.0015
+    N, w_max, tau_syn=1.0, tau_p=2.5, tau_d=5.0, amp_p=0.08, amp_d=-0.0533, rho=0.0015
 ):
     rate_term = (
         2
@@ -208,7 +208,7 @@ def delta_W_th(
 
 
 def delta_W_th_nozero(
-    N, w_max, tau_syn=1.0, tau_p=2.5, tau_d=5.0, amp_p=0.08, amp_d=-0.053, rho=0.0015
+    N, w_max, tau_syn=1.0, tau_p=2.5, tau_d=5.0, amp_p=0.08, amp_d=-0.0533, rho=0.0015
 ):
     interaction_term = w_max * rho / (1 + w_max) / (1 - (N - 1) * w_max) ** 2 * (
         amp_p
@@ -369,18 +369,6 @@ class hawkes_network:
             _, spiking_neuron = self.next_spike()
             Wtrack += self.stdp(spiking_neuron)
         return Wtrack
-
-
-#    def sim_ext(self, runtime, external=0, warmup=False):
-#        tend = self.t + runtime
-#        pbar = tqdm(total=runtime, position=0)
-#        while self.t < tend:
-#            dt, spiking_neuron = self.next_spike()
-#
-#            if not warmup:
-#                dW = self.stdp(spiking_neuron)
-#                self.weight_update(dW,external)
-#                pbar.update(dt)
 
 
 def sizes_sim(params):
