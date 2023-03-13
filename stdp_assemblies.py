@@ -86,6 +86,7 @@ def intertwined_weight_matrix(N, w_max, nc, swaps):
 
 
 def CDFm1(f1sum, x):
+    # inverse cumulative probability density for the time of the next evoked spike in a Hawkes network
     return -np.log(1 + 1 / f1sum * np.log(1 - x))
 
 
@@ -239,7 +240,7 @@ def delta_W_th_nozero(
 
 
 def delta_W_th_truncated(N, rho, w, f0=-0.0013, f10=0.0129762, f11=0.0129762):
-    ### f-coefficients computed for default parameters in delta_W_th, see
+    ### f-coefficients computed for default parameters in delta_W_th, see mathematica file
     r = rho / (1 - (N - 1) * w)
     dw = f0 * r * r + 2 * r * f10 * w + r * f11 * w * w * (N - 2)
     return dw
